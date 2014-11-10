@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <% if locals.has_key? :errors %>
+    <p><%= locals[:errors] %></p>
+  <% end %>
+
+  <h1>Sign up!</h1>
+  <form action="/signup" method="post">
+    Email:    <input type="text" name="email">
+    </br>
+    Password: <input type="password" name="password">
+    </br>
+    <input type="submit" value="Enviar">
+  </form>
+</body>
+</html>
