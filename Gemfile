@@ -12,7 +12,7 @@ gem 'dotenv'
 # http://stackoverflow.com/questions/14824179/typeerror-cannot-visit-mailmultibytechars
 gem 'pony', '~> 1.6', require: false
 
-gem 'puma'
+# gem 'puma'
 gem 'rack-flash3'
 
 group :test, :development do

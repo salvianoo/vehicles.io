@@ -7,6 +7,6 @@ Sequel.migration do
   end
 
   down do
-    drop_table :estados
+    drop_table :cidades
   end
 end

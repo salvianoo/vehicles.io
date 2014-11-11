@@ -10,31 +10,32 @@ RSpec.describe User, feature: true do
   end
 
   before :each do
-    User.new(user_hash).save
+    User.create(user_hash)
   end
 
   describe ".authenticate" do
     it "should be true for a valid user" do
-      user = db[:users][email: user_hash[:email]]
+      user = User[:email => user_hash[:email]]
       password = user_hash[:password]
 
-      expect(User.authenticate(user, password)).to be true
+      expect(user.authenticate(password)).to be true
     end
 
     it "should be false for an invalid user" do
-      user = db[:users][email: user_hash[:email]]
+      user = User[:email => user_hash[:email]]
       passsword_invalid = "senha invalida"
 
-      expect(User.authenticate(user, passsword_invalid)).to be false
+      expect(user.authenticate(passsword_invalid)).to be false
     end
   end
 
   describe "#save" do
     it "should insert a new user into database" do
-      user_id = User.new(user_hash).save
-      user = db[:users][id: user_id]
+      new_user = User.create(user_hash)
 
-      expect(user[:id]).to eq(user_id)
+      user = User[:id => new_user[:id]]
+
+      expect(new_user[:id]).to eq(user[:id])
     end
   end
 

@@ -25,3 +25,10 @@
 # end
 
 # set :app_file, __FILE__
+
+# require_relative "config/database"
+# require_relative "app/models/cidade"
+# require_relative "app/models/estado"
+
+# TODO LIST
+# Envio de email com Pony + Sendgrid

@@ -3,36 +3,27 @@ class User < Sequel::Model
 
   include BCrypt
 
-  attr_accessor :email, :password
+  # attr_accessor :email, :password
   # attr_reader :password_salt, :password_hash
 
   def validate
     super
-    validates_presence [:email, :password]
+    validates_presence [:email, :password_salt, :password_hash]
   end
 
-  def initialize(user_params = {})
-    @email    = user_params[:email]
-    @password = user_params[:password]
-
-    generate_hash
+  def authenticate(password)
+    self[:password_hash] == Engine.hash_secret(password, self[:password_salt])
   end
 
-  def self.authenticate(user, password)
-    user[:password_hash] == Engine.hash_secret(password, user[:password_salt])
-  end
+  def self.create(values = {}, &block)
+    email    = values[:email]
+    password = values[:password]
 
-  def save
-    DB[:users]
-    .insert(email: email,
-            password_salt: @password_salt,
-            password_hash: @password_hash)
-  end
+    password_salt = Engine.generate_salt
+    password_hash = Engine.hash_secret(password, password_salt)
 
-  private
-
-  def generate_hash
-    @password_salt = Engine.generate_salt
-    @password_hash = Engine.hash_secret(password, @password_salt)
+    super(email: email,
+          password_salt: password_salt,
+          password_hash: password_hash)
   end
 end

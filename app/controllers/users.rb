@@ -14,10 +14,10 @@ get '/login' do
 end
 
 post '/signup' do
-  new_user = User.new(params)
+  new_user = User.create(params)
 
   if new_user.valid?
-    session[:user_id] = new_user.save
+    session[:user_id] = new_user[:id]
     flash[:notice] = "Thanks for signing up!"
 
     redirect '/'
@@ -27,10 +27,10 @@ post '/signup' do
 end
 
 post '/login' do
-  user     = DB[:users][email: params[:email]]
+  user = User[:email => params[:email]]
   password = params[:password]
 
-  if user && User.authenticate(user, password)
+  if user && user.authenticate(password)
     session[:user_id] = user[:id]
 
     flash[:notice] = "User logged"
