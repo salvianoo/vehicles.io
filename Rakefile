@@ -1,13 +1,9 @@
 require_relative "db/seed.rb"
 
 namespace :db do
-  require 'sequel'
-  require 'pg'
 
   namespace :migrate do
     Sequel.extension :migration
-
-    DB = Sequel.connect(ENV['DATABASE_URL'])
 
     desc "Perform migration up to latest migration available"
     task :up do
