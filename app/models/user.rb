@@ -3,8 +3,13 @@ class User < Sequel::Model
 
   include BCrypt
 
-  # attr_accessor :email, :password
-  # attr_reader :password_salt, :password_hash
+  def initialize(params = {})
+    @email    = params[:email]
+    @password = params[:password]
+    generate_hash
+
+    super(values)
+  end
 
   def validate
     super
@@ -15,15 +20,18 @@ class User < Sequel::Model
     self[:password_hash] == Engine.hash_secret(password, self[:password_salt])
   end
 
-  def self.create(values = {}, &block)
-    email    = values[:email]
-    password = values[:password]
+  private
 
-    password_salt = Engine.generate_salt
-    password_hash = Engine.hash_secret(password, password_salt)
+  def generate_hash
+    @password_salt = Engine.generate_salt
+    @password_hash = Engine.hash_secret(@password, @password_salt)
+  end
 
-    super(email: email,
-          password_salt: password_salt,
-          password_hash: password_hash)
+  def values
+    {
+      email: @email,
+      password_salt: @password_salt,
+      password_hash: @password_hash
+    }
   end
 end

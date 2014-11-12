@@ -24,6 +24,19 @@
 #   user_obj
 # end
 
+# def self.create(values = {}, &block)
+#   email    = values[:email]
+#   password = values[:password]
+
+#   password_salt = Engine.generate_salt
+#   password_hash = Engine.hash_secret(password, password_salt)
+
+#   super(email: email,
+#         password_salt: password_salt,
+#         password_hash: password_hash)
+# end
+
+
 # set :app_file, __FILE__
 
 # require_relative "config/database"
@@ -32,3 +45,4 @@
 
 # TODO LIST
 # Envio de email com Pony + Sendgrid
+# password field client side validation

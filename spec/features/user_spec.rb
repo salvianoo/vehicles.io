@@ -10,7 +10,7 @@ RSpec.describe User, feature: true do
   end
 
   before :each do
-    User.create(user_hash)
+    User.new(user_hash).save
   end
 
   describe ".authenticate" do

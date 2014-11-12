@@ -14,15 +14,16 @@ get '/login' do
 end
 
 post '/signup' do
-  new_user = User.create(params)
+  user = User.new(params)
 
-  if new_user.valid?
-    session[:user_id] = new_user[:id]
+  if user.valid?
+    user.save
     flash[:notice] = "Thanks for signing up!"
 
+    session[:user_id] = user[:id]
     redirect '/'
   else
-    erb :signup, locals: {errors: new_user.errors}
+    erb :signup, locals: {errors: user.errors}
   end
 end
 

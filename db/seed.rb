@@ -9,7 +9,7 @@ def create_fake_user
     email:    Faker::Internet.email,
     password: Faker::Internet.password(8, 16)
   }
-  User.create(user_params)
+  User.new(user_params).save
 end
 
 def seed_users(number_of_users)
