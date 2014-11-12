@@ -14,10 +14,10 @@ gem 'pony', '~> 1.6', require: false
 
 gem 'puma'
 gem 'rack-flash3'
+gem 'faker'
 
 group :test, :development do
   gem 'rspec'
   gem 'rack-test'
   gem 'database_cleaner'
-  gem 'faker'
 end
