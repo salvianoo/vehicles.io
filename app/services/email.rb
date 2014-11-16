@@ -20,7 +20,7 @@ class Email
     if @intercept_emails
       options_for_mailcatcher
     else
-      optinos_for_humans
+      options_for_humans
     end
   end
 
