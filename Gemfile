@@ -20,4 +20,5 @@ group :test, :development do
   gem 'rspec'
   gem 'rack-test'
   gem 'database_cleaner'
+  gem 'mailcatcher'
 end

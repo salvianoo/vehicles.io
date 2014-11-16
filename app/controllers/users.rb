@@ -18,9 +18,10 @@ post '/signup' do
 
   if user.valid?
     user.save
-    flash[:notice] = "Thanks for signing up!"
-
+    SignupMessage.new(user.email).deliver
     session[:user_id] = user[:id]
+
+    flash[:notice] = "Thanks for signing up!"
     redirect '/'
   else
     erb :signup, locals: {errors: user.errors}

@@ -3,6 +3,8 @@ class User < Sequel::Model
 
   include BCrypt
 
+  attr_reader :email
+
   def initialize(params = {})
     @email    = params[:email]
     @password = params[:password]
