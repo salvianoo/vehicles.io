@@ -10,6 +10,8 @@ require 'bundler/setup'
 
 require 'bcrypt'
 require 'sinatra'
+require 'sinatra/reloader'
+require 'bugsnag'
 require 'pathname'
 require 'rack-flash'
 
@@ -20,8 +22,15 @@ configure do
   # set :root, APP_ROOT.to_path
   set :root, APP_ROOT
 
+  if ENV.fetch('RACK_ENV') == "development"
+    register Sinatra::Reloader
+  end
+
   enable :sessions
   use Rack::Flash
+
+  use Bugsnag::Rack
+  enable :raise_errors
 
   set :session_secret, ENV['SESSION_SECRET'] || 'this is a secret shhhhh'
 
