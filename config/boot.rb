@@ -1,5 +1,6 @@
-require File.expand_path('config/environment')
-require File.expand_path('config/database')
+require_relative 'environment'
+require_relative 'database'
+require_relative 'bugsnag'
 
 # Set up the controllers and helpers
 Dir[APP_ROOT.join('app', 'controllers', '*.rb')].each { |file| require file }

@@ -20,7 +20,7 @@ class SignupMessage
   end
 
   def template_name
-    "signup_message"
+    'signup_message'
   end
 
   def template(name)
