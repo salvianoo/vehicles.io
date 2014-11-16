@@ -7,7 +7,7 @@ class Email
     @subject          = options.fetch(:subject)
     @body             = options.fetch(:body)
     @html_body        = options.fetch(:html_body) { false }
-    @intercept_emails = options.fetch(:intercept_emails) { ENV["RACK_ENV"] || "development" }
+    @intercept_emails = options.fetch(:intercept_emails) { "development" }
   end
 
   def ship
