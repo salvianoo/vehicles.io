@@ -9,10 +9,15 @@ RSpec.describe SignupMessage, feature: true do
       FakeUser = Struct.new(:email)
       fakeuser = FakeUser.new("groot@marvel.com")
 
-      SignupMessage.new(
-        email: fakeuser.email,
-        intercept_emails: true
-      ).deliver
+      send_email_with_mailcatcher = -> (option = true) {
+        SignupMessage.new(
+          email: fakeuser.email,
+          intercept_emails: option
+        ).deliver
+      }
+      if ENV['RACK_ENV'] == 'development'
+        send_email_with_mailcatcher.call
+      end
       # Integration test. Go look in mailcatcher to make sure you're happy with this
     end
   end
