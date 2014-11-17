@@ -22,7 +22,7 @@ configure do
   # set :root, APP_ROOT.to_path
   set :root, APP_ROOT
 
-  if ENV.fetch('RACK_ENV') == "development"
+  if ENV['RACK_ENV'] == "development"
     register Sinatra::Reloader
   end
 

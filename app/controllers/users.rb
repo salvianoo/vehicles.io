@@ -18,7 +18,7 @@ post '/signup' do
 
   if user.valid?
     user.save
-    SignupMessage.new(user.email).deliver
+    SignupMessage.new(email: user.email).deliver
     session[:user_id] = user[:id]
 
     flash[:notice] = "Thanks for signing up!"

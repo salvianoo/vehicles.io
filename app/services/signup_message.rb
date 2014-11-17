@@ -2,8 +2,11 @@ require 'erb'
 
 class SignupMessage
 
-  def initialize(user_email)
-    @email = user_email
+  def initialize(options)
+    @email            = options.fetch(:email)
+    @intercept_emails = options.fetch(:intercept_emails) {
+      development?
+    }
   end
 
   def deliver
@@ -11,7 +14,8 @@ class SignupMessage
       to: to,
       from: from_email,
       subject: subject,
-      body: body
+      body: body,
+      intercept_emails: intercept_emails?
     ).ship
   end
 
@@ -37,5 +41,13 @@ class SignupMessage
 
   def subject
     'Seja bem vindo'
+  end
+
+  def intercept_emails?
+    @intercept_emails
+  end
+
+  def development?
+    ENV['RACK_ENV'] == 'development'
   end
 end
