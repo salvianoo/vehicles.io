@@ -8,7 +8,7 @@
 
 ### 2. You will need Postgresql:
 
-- [http://postgresapp.com/](Download Postgres)
+- [Download Postgres for OSX](http://postgresapp.com/)
 
 ### 3. Create the databases:
 
