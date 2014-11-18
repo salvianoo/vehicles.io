@@ -1,0 +1,18 @@
+# configure :production do
+#   # Configure stuff here you'll want to
+#   # # only be run at Heroku at boot
+#   # # TIP: You can get you database information
+#   # # from ENV['DATABASE_URI'] (see /env route below)
+#   # end
+# end
+
+# helpers do
+#   def login?
+#     true if session[:user_id]
+#   end
+# end
+
+# set :app_file, __FILE__
+
+# TODO LIST
+# password field client side validation
