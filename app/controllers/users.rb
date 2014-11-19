@@ -29,7 +29,7 @@ post '/signup' do
 end
 
 post '/login' do
-  user = User[:email => params[:email]]
+  user = User[email: params[:email]]
   password = params[:password]
 
   if user && user.authenticate(password)
