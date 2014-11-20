@@ -1,8 +1,15 @@
-get('/') { erb :index }
+get '/' do
+  erb :index
+end
 
 get '/users' do
   @users = User.all
   erb :users
+end
+
+get '/passageiros' do
+  @passageiros = Passenger.all
+  erb :passageiros
 end
 
 get '/signup' do
@@ -41,4 +48,29 @@ post '/login' do
     flash[:notice] = "Email or password is invalid"
     erb :login, locals: {errors: "Email / password is invalid"}
   end
+end
+
+get '/vehicle_request' do
+  erb :"vehicle_requests/new"
+end
+
+post '/vehicle_request' do
+  request = VehicleRequest.new(params)
+  request.create_nested_passengers
+
+  if request.valid?
+    request.save
+    puts request.passengers.inspect
+
+    # RequestNotification.deliver
+
+    flash[:notice] = "Requisicao enviada para processo de analise"
+    redirect '/'
+  end
+  #
+  #   erb :"vehicle_requests/new"
+  # else
+  #   flash[:notice] = "Dados invalidos"
+  #   erb :"vehicle_requests/new"
+  # end
 end

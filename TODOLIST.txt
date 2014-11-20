@@ -15,4 +15,6 @@
 # set :app_file, __FILE__
 
 # TODO LIST
-# password field client side validation
+
+# - password field client side validation
+# - create Gruntfile to use bootstrap and jquery

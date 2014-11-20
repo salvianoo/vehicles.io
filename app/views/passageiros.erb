@@ -1,0 +1,5 @@
+<h1>Users listing</h1>
+
+<% @passageiros.each do |p| %>
+  <%= p[:name] %> - <%= p[:vehicle_request_id] %></br>
+<% end %>

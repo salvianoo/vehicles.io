@@ -1,0 +1,61 @@
+<% if flash.has?(:notice) %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+<h1>
+  <span class="glyphicon glyphicon-file"></span>
+  Requisição de veículo
+</h1>
+<form action="/vehicle_request" method="post">
+  <div class="row">
+    <div class="col-lg-4">
+      <label for="departament">Departamento</label>
+      <input id="departament" name="departamento" class="form-control" type="text">
+      <p class="help-block">Digite o nome do Departamento responsável.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4">
+      <label for="destination">Destino</label>
+      <input id="destination" name="destino" class="form-control" type="text">
+      <p class="help-block">Digite o nome da cidade de destino.</p>
+    </div>
+  </div>
+
+  <!-- Inicio campos passageiros -->
+  <label for="name">Passageiros</label>
+  <div class= "row">
+    <div class="col-lg-4">
+      <input id="name" class="form-control" type="text" name="passageiros[]">
+      <p class="help-block">Digite o nome completo do passageiro.</p>
+    </div>
+    <div class="col-lg-3">
+      <input id="passengers__destroy" type="hidden">
+      <span class="glyphicon glyphicon-remove-circle"></span>
+      <a href="#" class="remove_fields">Remover passageiro</a>
+    </div>
+  </div>
+
+  <div class= "row">
+    <div class="col-lg-4">
+      <input id="name" class="form-control" type="text" name="passageiros[]">
+      <p class="help-block">Digite o nome completo do passageiro.</p>
+    </div>
+    <div class="col-lg-3">
+      <input id="passengers__destroy" type="hidden">
+      <span class="glyphicon glyphicon-remove-circle"></span>
+      <a href="#" class="remove_fields">Remover passageiro</a>
+    </div>
+  </div>
+  <!-- Fim campos passageiros -->
+
+  <a href="#">Adicionar outro passageiro</a>
+  <span class="glyphicon glyphicon-plus-sign"></span>
+
+  <div class="row">
+    <div class="col-lg-4">
+      <p><input class="btn btn-primary col-lg-5" type="submit" value="Continuar"></p>
+    </div>
+  </div>
+
+</form>
