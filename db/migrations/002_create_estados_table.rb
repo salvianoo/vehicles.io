@@ -3,7 +3,7 @@ Sequel.migration do
     create_table :estados do
       primary_key :id
       String :sigla, null: false
-      String :nome,  null: false
+      String :nome, null: false
     end
   end
 
