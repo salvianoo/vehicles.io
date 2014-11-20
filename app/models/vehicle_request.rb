@@ -12,20 +12,20 @@ class VehicleRequest < Sequel::Model
     super(values)
   end
 
-  # To create new passengers instances related to the VehicleRequest object
-  # I need to do some like this:
+  # To create new passenger instances related to the VehicleRequest object
+  # You need to do the following:
   #
   #  request = VehicleRequest.new(params)
   #
   #  request.passengers_attributes = [{name: 'Joao'}, {name: 'Maria'}]
   #
-  # With this method it could be better, after define the request object,
-  # just call it.
+  # It can be better with the method defined below.
+  # After define the 'request' object, call the method
   #
   #  request.create_nested_passengers
   #
-  # The map function will return an array in the format above.
-  # Now i can retrieve the passengers nested to the current object
+  # The map function will return an array in the correct format.
+  # Now you can retrieve passengers nested to the 'request' object
   #
   #  request.passengers
   #
