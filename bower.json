@@ -1,0 +1,22 @@
+{
+  "name": "vehicles.io",
+  "version": "0.0.1",
+  "homepage": "https://github.com/salvianoo/vehicles.io",
+  "authors": [
+    "Salviano Ludgerio <salviano.lfg@gmail.com>"
+  ],
+  "description": "produto de pfc2",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/assets/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "3.3.1"
+  }
+}
