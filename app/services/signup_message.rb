@@ -4,9 +4,7 @@ class SignupMessage
 
   def initialize(options)
     @email            = options.fetch(:email)
-    @intercept_emails = options.fetch(:intercept_emails) {
-      development?
-    }
+    @intercept_emails = options.fetch(:intercept_emails) { development? }
   end
 
   def deliver
