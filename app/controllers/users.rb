@@ -60,17 +60,11 @@ post '/vehicle_request' do
 
   if request.valid?
     request.save
-    puts request.passengers.inspect
-
-    # RequestNotification.deliver
+    # RequestNotification.new(request).deliver
 
     flash[:notice] = "Requisicao enviada para processo de analise"
     redirect '/'
+  else
+    erb :"vehicle_requests/new", locals: {errors: request.errors}
   end
-  #
-  #   erb :"vehicle_requests/new"
-  # else
-  #   flash[:notice] = "Dados invalidos"
-  #   erb :"vehicle_requests/new"
-  # end
 end
