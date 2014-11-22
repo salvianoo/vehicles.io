@@ -4,10 +4,20 @@ class VehicleRequest < Sequel::Model
   plugin :nested_attributes
   nested_attributes :passengers
 
+  # attr_reader :departamento, :destino, :passengers
+
   def initialize(params = {})
-    @departamento = params[:departamento]
-    @destino      = params[:destino]
-    @passengers   = params[:passageiros]
+    @departamento     = params[:departamento]
+    @destino          = params[:destino]
+    @passengers       = params[:passageiros]
+    @motivo_da_viagem = params[:motivo_da_viagem]
+    @servico          = params[:service]
+    @data             = params[:data]
+    @hora             = params[:hora]
+    @endereco         = params[:endereco]
+    @buscar_aeroporto = params[:buscar_aeroporto]
+    @cia_area         = params[:cia_area]
+    @numero_voo       = params[:numero_voo]
 
     super(values)
   end
@@ -38,7 +48,15 @@ class VehicleRequest < Sequel::Model
   def values
     {
       departamento: @departamento,
-      destino: @destino
+      destino: @destino,
+      motivo_da_viagem: @motivo_da_viagem,
+      servico: @servico,
+      data: @data,
+      hora: @hora,
+      endereco: @endereco,
+      buscar_aeroporto: @buscar_aeroporto,
+      cia_area: @cia_area,
+      numero_voo: @numero_voo
     }
   end
 end

@@ -1,60 +1,44 @@
-<% if flash.has?(:notice) %>
-  <p><%= flash[:notice] %></p>
+<% if locals.has_key? :errors %>
+  <p><%= locals[:errors] %></p>
 <% end %>
 <h1>
   <span class="glyphicon glyphicon-file"></span>
   Requisição de veículo
 </h1>
 <form action="/vehicle_request" method="post">
+  <!-- Departamento -->
   <div class="row">
     <div class="col-lg-4">
       <label for="departament">Departamento</label>
       <input id="departament" name="departamento" class="form-control" type="text">
-      <p class="help-block">Digite o nome do Departamento responsável.</p>
+      <p class="help-block">Departamento responsável.</p>
     </div>
   </div>
-
+  <!-- Destino -->
   <div class="row">
     <div class="col-lg-4">
       <label for="destination">Destino</label>
       <input id="destination" name="destino" class="form-control" type="text">
-      <p class="help-block">Digite o nome da cidade de destino.</p>
+      <p class="help-block">Nome da cidade de destino.</p>
     </div>
   </div>
 
-  <!-- Inicio campos passageiros -->
-  <label for="name">Passageiros</label>
-  <div class= "row">
-    <div class="col-lg-4">
-      <input id="name" class="form-control" type="text" name="passageiros[]">
-      <p class="help-block">Digite o nome completo do passageiro.</p>
-    </div>
-    <div class="col-lg-3">
-      <input id="passengers__destroy" type="hidden">
-      <span class="glyphicon glyphicon-remove-circle"></span>
-      <a href="#" class="remove_fields">Remover passageiro</a>
-    </div>
-  </div>
+  <%= erb :"vehicle_requests/_passageiros_section" %>
 
-  <div class= "row">
-    <div class="col-lg-4">
-      <input id="name" class="form-control" type="text" name="passageiros[]">
-      <p class="help-block">Digite o nome completo do passageiro.</p>
-    </div>
-    <div class="col-lg-3">
-      <input id="passengers__destroy" type="hidden">
-      <span class="glyphicon glyphicon-remove-circle"></span>
-      <a href="#" class="remove_fields">Remover passageiro</a>
-    </div>
-  </div>
-  <!-- Fim campos passageiros -->
+  <%= erb :"vehicle_requests/_motivo_da_viagem" %>
 
-  <a href="#">Adicionar outro passageiro</a>
-  <span class="glyphicon glyphicon-plus-sign"></span>
+  <%= erb :"vehicle_requests/_servico_section" %>
 
-  <div class="row">
+  <%= erb :"vehicle_requests/_data_hora_section" %>
+
+  <%= erb :"vehicle_requests/_local_section" %>
+
+  <%= erb :"vehicle_requests/_dados_voo_section" %>
+
+  <!-- button Submit -->
+  <div class="btn-submit-position row">
     <div class="col-lg-4">
-      <p><input class="btn btn-primary col-lg-5" type="submit" value="Continuar"></p>
+      <p><input class="btn btn-primary col-lg-5" type="submit" value="Enviar requisição"></p>
     </div>
   </div>
 
