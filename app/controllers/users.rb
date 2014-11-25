@@ -91,3 +91,21 @@ end
 get '/logout' do
   session.clear
 end
+
+get '/admin' do
+  erb :admin
+end
+
+post '/admin' do
+  admin = Admin.new(params)
+
+  if admin.valid?
+    admin.save
+    session[:admin_id] = admin[:id]
+
+    flash[:notice] = "Created a new admin"
+    redirect '/'
+  else
+    erb :admin, locals: {errors: admin.errors}
+  end
+end
