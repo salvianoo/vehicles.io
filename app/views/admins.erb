@@ -1,0 +1,5 @@
+<h1>Admins listing</h1>
+
+<% @admins.each do |admin| %>
+  <%= admin[:nome] %> - <%= admin[:email] %></br>
+<% end %>

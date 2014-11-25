@@ -1,0 +1,11 @@
+<% if locals.has_key? :errors %>
+  <p><%= locals[:errors] %></p>
+<% end %>
+<h1>Sign up!</h1>
+<form action="/admin" method="post">
+  Email:    <input type="text" name="email">
+  </br>
+  Password: <input type="password" name="password">
+  </br>
+  <input type="submit" value="Enviar">
+</form>
