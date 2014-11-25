@@ -3,5 +3,5 @@ bin
 .env
 .DS_Store
 
-app/controllers/users_controller.rb
-app/models/user2.rb
+public/assets
+TODOLIST.txt
