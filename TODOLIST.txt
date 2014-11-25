@@ -6,12 +6,6 @@
 #   # end
 # end
 
-# helpers do
-#   def login?
-#     true if session[:user_id]
-#   end
-# end
-
 # set :app_file, __FILE__
 
 # TODO LIST
@@ -19,5 +13,16 @@
 # - password field client side validation
 # - create Gruntfile to use bootstrap and jquery
 # - sinatra-prawn to render pdf
+# - add passageiros_campos dinamicos
 
-# [x] terminar de inserir todos os campos da solicitação
+# - evinar email apos criar solicitacao => RequestNotification.deliver
+
+# - inserir menu da application (bootstrap) - olhar an app rails
+# - session user
+# - criar rotas mais rails like with new/ e edit/
+# - melhores formatos para os campos data e hora - Sequel
+# - melhorar o visual das flash messages
+# - Juntar os controllers, olhar artigo com dicas sinatra
+# - criar tests para as rotas/controles
+# - melhorar os campos data e hora com mascara - acessibilidade
+# - contribuir com projetos da HElabs
