@@ -37,6 +37,7 @@ post '/signup' do
     flash[:notice] = "Thanks for signing up!"
     redirect '/'
   else
+    flash[:errors] = user.errors
     erb :signup, locals: {errors: user.errors}
   end
 end
@@ -55,7 +56,7 @@ post '/login' do
     flash[:notice] = "User logged"
     redirect '/vehicle_request'
   else
-    flash[:notice] = "Email or password is invalid"
+    flash[:errors] = "Email or password is invalid"
     erb :login, locals: {errors: "Email / password is invalid"}
   end
 end
@@ -65,12 +66,6 @@ get '/vehicle_request' do
   require_logged_in
   erb :"vehicle_requests/new"
 end
-
-# get '/admin_email' do
-#   admin = Admin.last
-#   puts admin.email
-#   puts admin.id
-# end
 
 post '/vehicle_request' do
   request = VehicleRequest.new(params)
@@ -84,6 +79,7 @@ post '/vehicle_request' do
     flash[:notice] = "Requisicao enviada para processo de analise"
     redirect '/'
   else
+    flash[:errors] = request.errors
     erb :"vehicle_requests/new", locals: {errors: request.errors}
   end
 end
