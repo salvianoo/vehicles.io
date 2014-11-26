@@ -1,0 +1,11 @@
+<% if flash.has? :errors %>
+  <div class="alert alert-danger">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <div id="flash_errors"><%= flash[:errors] %></div>
+  </div>
+<% elsif flash.has? :notice %>
+  <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <div id="flash_notice"><%= flash[:notice] %></div>
+  </div>
+<% end %>
