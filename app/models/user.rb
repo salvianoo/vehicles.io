@@ -3,8 +3,6 @@ class User < Sequel::Model
 
   include BCrypt
 
-  # attr_reader email: :email
-
   def initialize(params = {})
     @email    = params[:email]
     @password = params[:password]
@@ -20,10 +18,6 @@ class User < Sequel::Model
 
   def authenticate(password)
     self[:password_hash] == Engine.hash_secret(password, self[:password_salt])
-  end
-
-  def get_email
-    @email
   end
 
   private

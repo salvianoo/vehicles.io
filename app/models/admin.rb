@@ -3,8 +3,6 @@ class Admin < Sequel::Model
 
   include BCrypt
 
-  # attr_reader :email
-
   def initialize(params = {})
     @nome     = params.fetch(:nome) { "Fernanda" }
     @email    = params[:email]
@@ -21,10 +19,6 @@ class Admin < Sequel::Model
 
   def authenticate(password)
     self[:password_hash] == Engine.hash_secret(password, self[:password_salt])
-  end
-
-  def admin?
-    true
   end
 
   private
