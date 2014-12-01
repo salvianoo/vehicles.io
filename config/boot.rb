@@ -7,6 +7,4 @@ Dir[APP_ROOT.join('app', 'controllers', '*.rb')].each { |file| require file }
 Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 Dir[APP_ROOT.join('app', 'services', '*.rb')].each { |file| require file }
 
-Dir[APP_ROOT.join('app', 'models', '*.rb')].each do |model_file|
-  require model_file
-end
+Dir[APP_ROOT.join('app', 'models', '*.rb')].each { |file| require file }
