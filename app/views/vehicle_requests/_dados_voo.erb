@@ -1,0 +1,28 @@
+<% buscar_aeroporto = foo(locals, :buscar_aeroporto) %>
+
+<!-- Dados do voo -->
+<div class="row dados_voo_position">
+  <div class="col-lg-8">
+    <legend>Dados do voo</legend>
+
+    <% if buscar_aeroporto == "sim" %>
+      <div class="col-lg-3">
+        <label for="cia_are">Companhia aérea</label>
+        <input id="cia_area" name="cia_area" class="form-control" type="text" value="<%= foo(locals, :cia_area) %>">
+      </div>
+      <div class="col-lg-3">
+        <label for="num_voo">Número do voo</label>
+        <input id="num_voo" name="numero_voo" class="form-control" type="text" value="<%= foo(locals, :numero_voo) %>">
+      </div>
+    <% else %>
+      <div class="col-lg-3">
+        <label for="cia_are">Companhia aérea</label>
+        <input id="cia_area" name="cia_area" class="form-control" type="text" disabled>
+      </div>
+      <div class="col-lg-3">
+        <label for="num_voo">Número do voo</label>
+        <input id="num_voo" name="numero_voo" class="form-control" type="text" disabled>
+      </div>
+    <% end %>
+  </div>
+</div>

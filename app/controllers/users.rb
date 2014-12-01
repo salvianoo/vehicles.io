@@ -4,12 +4,12 @@ end
 
 get '/users' do
   @users = User.all
-  erb :users
+  erb 'users/users'.to_sym
 end
 
-get "/users/edit/:id" do
+get '/users/edit/:id' do
   @user = User[id: params[:id]]
-  erb :edit
+  erb 'users/edit'.to_sym
 end
 
 get '/passageiros' do
@@ -17,13 +17,8 @@ get '/passageiros' do
   erb :passageiros
 end
 
-get '/admins' do
-  @admins = Admin.all
-  erb :admins
-end
-
 get '/signup' do
-  erb :signup
+  erb 'users/signup'.to_sym
 end
 
 post '/signup' do
@@ -31,19 +26,19 @@ post '/signup' do
 
   if user.valid?
     user.save
-    SignupMessage.new(email: user.get_email).deliver
+    SignupMessage.new(email: user.email).deliver
     session[:user_id] = user[:id]
 
-    flash[:notice] = "Thanks for signing up!"
+    flash[:notice] = 'Thanks for signing up!'
     redirect '/'
   else
     flash[:errors] = user.errors
-    erb :signup, locals: {errors: user.errors}
+    redirect 'users/signup'
   end
 end
 
 get '/login' do
-  erb :login
+  erb 'users/login'.to_sym
 end
 
 post '/login' do
@@ -53,18 +48,17 @@ post '/login' do
   if user && user.authenticate(password)
     session[:user_id] = user[:id]
 
-    flash[:notice] = "User logged"
-    redirect '/vehicle_request'
+    flash[:notice] = 'Usuario logado'
+    redirect '/'
   else
-    flash[:errors] = "Email or password is invalid"
-    erb :login, locals: {errors: "Email / password is invalid"}
+    flash[:errors] = 'Email or password is invalid'
+    redirect '/login'
   end
 end
 
 get '/vehicle_request' do
-  # puts session[:user_id]
   require_logged_in
-  erb :"vehicle_requests/new"
+  erb :'vehicle_requests/new'
 end
 
 post '/vehicle_request' do
@@ -76,11 +70,43 @@ post '/vehicle_request' do
     RequestNotification.new(request: request, intercept_emails: true)
     .deliver
 
-    flash[:notice] = "Requisicao enviada para processo de analise"
+    flash[:notice] = 'Requisicao enviada para processo de analise'
     redirect '/'
   else
     flash[:errors] = request.errors
-    erb :"vehicle_requests/new", locals: {errors: request.errors}
+    redirect '/vehicle_request'
+  end
+end
+
+get '/vehicle_request/edit/:id' do
+  required_admin
+  request = VehicleRequest[id: params[:id]]
+
+  erb "vehicle_requests/edit".to_sym, locals: request
+end
+
+post '/vehicle_request/update/:id' do
+  request = VehicleRequest[id: params[:id]]
+
+  request.update_attributes(params)
+  request.update_nested_passengers(params[:passageiros])
+
+  if request.valid?
+    request.save
+
+    # user = User[id: session[:user_id]]
+    # association user -> vehiclerequest
+    # request.user.email
+
+    # UserNotification.new(email: user.email).deliver
+
+    # Gera pdf e envia email para o usuário imprimir requisicao
+
+    flash[:notice] = 'Email enviado para o usuario imprimir a requisicao de veiculo'
+    redirect '/'
+  else
+    flash[:errors] = request.errors
+    redirect "/vehicle_requests/edit/#{request.id}"
   end
 end
 
@@ -88,20 +114,45 @@ get '/logout' do
   session.clear
 end
 
-get '/admin' do
-  erb :admin
+get '/admins' do
+  @admins = Admin.all
+  erb 'admins/admins'.to_sym
 end
 
-post '/admin' do
+get '/admin/signup' do
+  erb 'admins/signup'.to_sym
+end
+
+post '/admin/signup' do
   admin = Admin.new(params)
 
   if admin.valid?
     admin.save
     session[:admin_id] = admin[:id]
 
-    flash[:notice] = "Created a new admin"
+    flash[:notice] = 'Created a new admin'
     redirect '/'
   else
-    erb :admin, locals: {errors: admin.errors}
+    flash[:errors] = admin.errors
+    redirect '/admins/admin'
+  end
+end
+
+get '/admin/login' do
+  erb 'admins/login'.to_sym
+end
+
+post '/admin/login' do
+  admin = Admin[email: params[:email]]
+  password = params[:password]
+
+  if admin && admin.authenticate(password)
+    session[:admin_id] = admin[:id]
+
+    flash[:notice] = 'Conta de admin logado'
+    redirect '/'
+  else
+    flash[:errors] = 'Email or password is invalid'
+    redirect '/login'
   end
 end

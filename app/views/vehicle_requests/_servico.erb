@@ -3,18 +3,19 @@
   <div class="col-lg-8">
     <legend>Serviço a ser executado</legend>
 
-    <div class="col-lg-12 radio-op1">
-      <input type="radio" class="buscar-option" name="service" value="buscar" id="service_buscar">
-      <label for="service_buscar">Buscar</label>
-    </div>
-    <div class="col-lg-12 radio-op2">
-      <input type="radio" class="levar-option" name="service" value="levar" id="service_levar">
-      <label for="service_levar">Levar</label>
-    </div>
-    <div class="col-lg-12 radio-op3">
-      <input type="radio" class="conduzir-option" name="service" value="conduzir" id="service_conduzir">
-      <label for="service_conduzir">Conduzir</label>
-    </div>
+    <% servico_escolhido = foo(locals, :servico) %>
+
+    <% %w(buscar levar conduzir).each do |option| %>
+      <div class="col-lg-12 radio-<%= option %>">
+        <% if option == servico_escolhido %>
+          <input type="radio" name="servico" value=<%= option %> id=<%= "service_#{option}" %> checked>
+        <% else %>
+          <input type="radio" name="servico" value=<%= option %> id=<%= "service_#{option}" %>>
+        <% end %>
+
+        <label for=<%= "service_#{option}" %>><%= option.capitalize %></label>
+      </div>
+    <% end %>
   </div>
 </div>
 

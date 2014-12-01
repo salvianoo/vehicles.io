@@ -2,7 +2,7 @@
 <div class="row reason_position" >
   <div class="col-lg-8">
     <label for="reason_for_travel">Motivo da viagem</label>
-    <textarea name="motivo_da_viagem" id="reason_for_travel" class="form-control"></textarea>
+    <textarea name="motivo_da_viagem" id="reason_for_travel" class="form-control"><%= foo(locals, :motivo_da_viagem) %></textarea>
     <p class="help-block">Descreva o motivo da viagem.</p>
   </div>
 </div>

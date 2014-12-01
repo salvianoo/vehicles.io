@@ -1,0 +1,28 @@
+<!-- Local -->
+<div class="row local-position">
+  <div class="col-lg-8">
+    <legend>Local</legend>
+
+    <% buscar_aeroporto = foo(locals, :buscar_aeroporto) %>
+
+    <div class="col-lg-10">
+      <label for="address">Endereço</label>
+      <input id="address" name="endereco" class="form-control" type="text" value="<%= foo(locals, :endereco) %>">
+    </div>
+
+    <div class="airport-opts col-lg-8">
+      <strong>Buscar no Aeroporto?</strong>
+      <% if buscar_aeroporto == "sim" %>
+        <input type="radio" name="buscar_aeroporto" value="nao" id="nao_buscar">
+        <label for="nao_buscar">Não</label>
+        <input type="radio" name="buscar_aeroporto" value="sim" id="sim_buscar" checked>
+        <label for="sim_buscar">Sim</label>
+      <% else %>
+        <input type="radio" name="buscar_aeroporto" value="nao" id="nao_buscar" checked>
+        <label for="nao_buscar">Não</label>
+        <input type="radio" name="buscar_aeroporto" value="sim" id="sim_buscar">
+        <label for="sim_buscar">Sim</label>
+      <% end %>
+    </div>
+  </div>
+</div>

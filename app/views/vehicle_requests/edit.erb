@@ -1,0 +1,50 @@
+<h1><span class="glyphicon glyphicon-file"></span> Requisição de veículo</h1>
+
+<form action="/vehicle_request/update/<%= locals.id %>" method="post">
+
+  <!-- Departamento -->
+  <div class="row">
+    <div class="col-lg-4">
+      <label for="departament">Departamento</label>
+      <input id="departament" name="departamento" class="form-control" type="text" value="<%= locals.departamento %>">
+      <p class="help-block">Departamento responsável.</p>
+    </div>
+  </div>
+  <!-- Destino -->
+  <div class="row">
+    <div class="col-lg-4">
+      <label for="destination">Destino</label>
+      <input id="destination" name="destino" class="form-control" type="text" value="<%= locals.destino %>">
+      <p class="help-block">Nome da cidade de destino.</p>
+    </div>
+  </div>
+
+  <label for="name">Passageiros</label>
+
+  <% locals.passengers.each do |passenger| %>
+    <div class= "row">
+      <div class="col-lg-4">
+        <input id="name" class="form-control" type="text" name="passageiros[]" value="<%= passenger.name %>">
+        <p class="help-block">Nome completo do passageiro.</p>
+      </div>
+    </div>
+  <% end %>
+
+  <%= erb :"vehicle_requests/_motivo_da_viagem", locals: {request: locals} %>
+
+  <%= erb :"vehicle_requests/_servico", locals: {request: locals} %>
+
+  <%= erb :"vehicle_requests/_data_hora", locals: {request: locals} %>
+
+  <%= erb :"vehicle_requests/_local", locals: {request: locals} %>
+
+  <%= erb :"vehicle_requests/_dados_voo", locals: {request: locals} %>
+
+  <!-- button Submit -->
+  <div class="btn-submit-position row">
+    <div class="col-lg-4">
+      <p><input class="btn btn-success col-lg-5" type="submit" value="Aprovar requisição"></p>
+    </div>
+  </div>
+
+</form>
