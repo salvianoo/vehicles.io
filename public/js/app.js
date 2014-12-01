@@ -5,22 +5,20 @@ var hideAllRadios = function() {
 };
 
 var hideAndShowOptions = function() {
-
-  $('.buscar-option').click(function() {
+  $("#service_buscar").click(function() {
     hideAllRadios();
     $('.info-buscar').show();
   });
 
-  $('.levar-option').click(function() {
+  $("#service_levar").click(function() {
     hideAllRadios();
     $('.info-levar').show();
   });
 
-  $('.conduzir-option').click(function() {
+  $("#service_conduzir").click(function() {
     hideAllRadios();
     $('.info-conduzir').show();
   });
-
 };
 
 var dateTimeMask = function() {
@@ -29,14 +27,14 @@ var dateTimeMask = function() {
 };
 
 var enableDadosVoo = function() {
-  $("#sim_buscar").click(function () {
+  $("#sim_buscar").click(function() {
     $("#cia_area").removeAttr("disabled");
     $("#num_voo").removeAttr("disabled");
   });
 };
 
 var disableDadosVoo = function() {
-  $("#nao_buscar").click(function () {
+  $("#nao_buscar").click(function() {
     $("#cia_area").attr('disabled', true);
     $("#num_voo").attr('disabled', true);
   });
