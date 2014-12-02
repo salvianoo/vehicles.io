@@ -11,8 +11,6 @@
 # TODO LIST
 
 - client side validation, plugin jquery [password field]
-- sinatra-prawn to render pdf
-
 - add passageiros_campos dinamicos
 - melhores formatos para os campos data e hora - Sequel
 
@@ -20,10 +18,21 @@
 - criar rotas mais rails like with new/ e edit/
 - criar tests para as rotas/controles
 
-- associar user com vehiclerequest
-
 - contribuir com projetos da HElabs
-- levar minha pinguinhas pra Lud
 - Screencast do GoRails sobre nested models
 - "theme": "Soda Dark 3.sublime-theme",
 - posso colocar o login/singup dentro de um modal ao inves de serem paginas separadas
+
+- ADICIONAR CAMPO HORARIO DO VOO QDO NECESSARIO
+- MUDAR HORA PARA HORARIO NO FORM
+
+- QUANDO FOR BUSCAR OU CONDUZIR COLOCAR O HORARIO DA ATIVIDADE QUE O PASSAGEIRO IRA REALIZAR.
+- QDO FOR SO LEVAR TRAVAR O CAMPO DE HORARIO E ALTERAR O TEXTO De AJUDA
+
+- MUDAR A ABORDAGEM: Retirar o motivo da viagem e dar enfase na importancia da descrição do servico a ser prestado
+- FAQ TBM MT IMPORTANTE
+- MOSTRAR O PREVIEW DA DESCRICAO DO SERVICO PARA O ADMIN
+
+- Reescrever app em Rails [futuro]
+- Gerar report worker com Sidekiq [futuro]
+- Email async com activejob [futuro]
