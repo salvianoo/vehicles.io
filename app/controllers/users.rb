@@ -64,6 +64,7 @@ end
 post '/vehicle_request' do
   request = VehicleRequest.new(params)
   request.create_nested_passengers
+  request.user_id = session[:user_id]
 
   if request.valid?
     request.save
@@ -94,19 +95,30 @@ post '/vehicle_request/update/:id' do
   if request.valid?
     request.save
 
-    # user = User[id: session[:user_id]]
-    # association user -> vehiclerequest
-    # request.user.email
+    user = User[id: request.user_id]
 
-    # UserNotification.new(email: user.email).deliver
-
-    # Gera pdf e envia email para o usuário imprimir requisicao
+    UserNotification.new(email: user.email,
+                         token: request.token,
+                         intercept_emails: true).deliver
 
     flash[:notice] = 'Email enviado para o usuario imprimir a requisicao de veiculo'
     redirect '/'
   else
     flash[:errors] = request.errors
     redirect "/vehicle_requests/edit/#{request.id}"
+  end
+end
+
+get '/vehicle_request/pdf/:token' do
+  content_type 'application/pdf'
+
+  request = VehicleRequest[token: params[:token]]
+
+  if request && request.token == params[:token]
+    RequestReport.new(request).to_pdf
+  else
+    flash[:errors] = "404 not found"
+    redirect '/'
   end
 end
 
