@@ -1,4 +1,6 @@
 class User < Sequel::Model
+  one_to_many :vehicle_requests
+
   plugin :validation_helpers
 
   include BCrypt

@@ -1,4 +1,7 @@
+require 'securerandom'
+
 class VehicleRequest < Sequel::Model
+  many_to_one :user
   one_to_many :passengers
 
   plugin :nested_attributes
@@ -16,6 +19,7 @@ class VehicleRequest < Sequel::Model
     @buscar_aeroporto = params[:buscar_aeroporto]
     @cia_area         = params[:cia_area]
     @numero_voo       = params[:numero_voo]
+    @token            = SecureRandom.urlsafe_base64
 
     super(values)
   end
@@ -68,7 +72,8 @@ class VehicleRequest < Sequel::Model
       endereco: @endereco,
       buscar_aeroporto: @buscar_aeroporto,
       cia_area: @cia_area,
-      numero_voo: @numero_voo
+      numero_voo: @numero_voo,
+      token: @token
     }
   end
 
