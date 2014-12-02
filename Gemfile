@@ -17,6 +17,7 @@ gem 'pony', '~> 1.6', require: false
 gem 'puma'
 gem 'rack-flash3'
 gem 'faker'
+gem 'pdfkit'
 
 group :test, :development do
   gem 'rspec'
